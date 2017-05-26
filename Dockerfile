@@ -24,10 +24,19 @@ RUN MINICONDA_DOWNLOAD_URL="https://repo.continuum.io/miniconda" && \
     MINICONDA_FILENAME="Miniconda3-4.3.14-Linux-x86_64.sh" && \
     wget "$MINICONDA_DOWNLOAD_URL/$MINICONDA_FILENAME" -O "/tmp/$MINICONDA_FILENAME" && \
     bash "/tmp/$MINICONDA_FILENAME" -f -b -p /opt/conda && \
-    /opt/conda/bin/conda install --yes -c conda-forge pip && \
+    /opt/conda/bin/conda install --yes -c conda-forge sqlalchemy tornado jinja2 traitlets requests pip nodejs configurable-http-proxy && \
     /opt/conda/bin/pip install --upgrade pip && \
-    rm -rf /tmp/*
 
 ENV PATH=/opt/conda/bin:$PATH
+
+# install jupyterhub
+RUN git clone https://github.com/jupyterhub/jupyterhub /tmp/src/jupyterhub
+WORKDIR /tmp/src/jupyterhub
+RUN python setup.py js && pip install . && \
+    rm -rf $PWD ~/.cache ~/.npm
+
+RUN mkdir -p /srv/jupyterhub/
+WORKDIR /srv/jupyterhub/
+EXPOSE 8000
 
 CMD ["/bin/bash"]
