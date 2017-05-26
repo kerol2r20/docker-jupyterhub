@@ -4,7 +4,7 @@ MAINTAINER Yu-Hsin Lu <kerol2r20@gmail.com>
 
 # install pre-required packages
 RUN apk update && \
-    apk add --no-cache git wget bash ca-certificates
+    apk add --no-cache git wget bash ca-certificates linux-pam
 
 # install GNU libc and set UTF-8 locale as default
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
