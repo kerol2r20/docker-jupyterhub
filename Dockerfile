@@ -29,7 +29,7 @@ RUN MINICONDA_DOWNLOAD_URL="https://repo.continuum.io/miniconda" && \
 
 ENV PATH=/opt/conda/bin:$PATH
 
-install jupyterhub
+# install jupyterhub
 RUN git clone https://github.com/jupyterhub/jupyterhub /tmp/src/jupyterhub
 
 WORKDIR /tmp/src/jupyterhub
