@@ -31,12 +31,16 @@ ENV PATH=/opt/conda/bin:$PATH
 
 # install jupyterhub
 RUN git clone https://github.com/jupyterhub/jupyterhub /tmp/src/jupyterhub
+
 WORKDIR /tmp/src/jupyterhub
+
 RUN python setup.py js && pip install . && \
     rm -rf $PWD ~/.cache ~/.npm
 
 RUN mkdir -p /srv/jupyterhub/
+
 WORKDIR /srv/jupyterhub/
+
 EXPOSE 8000
 
 CMD ["/bin/bash"]
