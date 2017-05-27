@@ -35,12 +35,15 @@ RUN git clone https://github.com/jupyterhub/jupyterhub /tmp/src/jupyterhub
 WORKDIR /tmp/src/jupyterhub
 
 RUN python setup.py js && pip install . && \
-    rm -rf $PWD ~/.cache ~/.npm
+    rm -rf $PWD ~/.cache ~/.npm && \
+    pip install jupyter
 
 RUN mkdir -p /srv/jupyterhub/
 
 WORKDIR /srv/jupyterhub/
 
+RUN jupyterhub --generate-config
+
 EXPOSE 8000
 
-CMD ["/bin/bash"]
+CMD ["jupyterhub"]
