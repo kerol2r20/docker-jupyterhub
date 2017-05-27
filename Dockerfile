@@ -4,7 +4,7 @@ MAINTAINER Yu-Hsin Lu <kerol2r20@gmail.com>
 
 # install pre-required packages
 RUN apk update && \
-    apk add --no-cache git wget bash ca-certificates build-base linux-pam-dev
+    apk add --no-cache git wget bash ca-certificates build-base linux-pam-dev linux-pam
 
 # install GNU libc and set UTF-8 locale as default
 RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
@@ -25,7 +25,7 @@ RUN MINICONDA_DOWNLOAD_URL="https://repo.continuum.io/miniconda" && \
     wget "$MINICONDA_DOWNLOAD_URL/$MINICONDA_FILENAME" -O "/tmp/$MINICONDA_FILENAME" && \
     bash "/tmp/$MINICONDA_FILENAME" -f -b -p /opt/conda && \
     /opt/conda/bin/conda install --yes -c conda-forge sqlalchemy tornado jinja2 traitlets requests pip nodejs configurable-http-proxy && \
-    /opt/conda/bin/pip install --upgrade pip jupyter
+    /opt/conda/bin/pip install --upgrade pip
 
 ENV PATH=/opt/conda/bin:$PATH
 
@@ -35,7 +35,8 @@ RUN git clone https://github.com/jupyterhub/jupyterhub /tmp/src/jupyterhub
 WORKDIR /tmp/src/jupyterhub
 
 RUN python setup.py js && pip install . && \
-    rm -rf $PWD ~/.cache ~/.npm
+    rm -rf $PWD ~/.cache ~/.npm && \
+    pip install jupyter
 
 RUN mkdir -p /srv/jupyterhub/
 
