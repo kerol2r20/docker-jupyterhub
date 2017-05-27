@@ -25,7 +25,7 @@ RUN MINICONDA_DOWNLOAD_URL="https://repo.continuum.io/miniconda" && \
     wget "$MINICONDA_DOWNLOAD_URL/$MINICONDA_FILENAME" -O "/tmp/$MINICONDA_FILENAME" && \
     bash "/tmp/$MINICONDA_FILENAME" -f -b -p /opt/conda && \
     /opt/conda/bin/conda install --yes -c conda-forge sqlalchemy tornado jinja2 traitlets requests pip nodejs configurable-http-proxy && \
-    /opt/conda/bin/pip install --upgrade pip
+    /opt/conda/bin/pip install --upgrade pip jupyter
 
 ENV PATH=/opt/conda/bin:$PATH
 
