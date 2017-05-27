@@ -35,8 +35,7 @@ RUN git clone https://github.com/jupyterhub/jupyterhub /tmp/src/jupyterhub
 WORKDIR /tmp/src/jupyterhub
 
 RUN python setup.py js && pip install . && \
-    rm -rf $PWD ~/.cache ~/.npm && \
-    pip install jupyter
+    rm -rf $PWD ~/.cache ~/.npm
 
 RUN mkdir -p /srv/jupyterhub/
 
