@@ -18,7 +18,7 @@ ENV LANG C.UTF-8
 # install Python + NodeJS with conda
 RUN ANACONDA_URL="https://repo.continuum.io/archive" && \
     ANACONDA_FILENAME="Anaconda3-4.3.1-Linux-x86_64.sh" && \
-    wget -q "$ANACONDA_URL/ANACONDA_FILENAME" -O /tmp/anaconda.sh  && \
+    wget -q "$ANACONDA_URL/$ANACONDA_FILENAME" -O /tmp/anaconda.sh  && \
     bash /tmp/anaconda.sh -f -b -p /opt/conda && \
     /opt/conda/bin/conda install --yes -c conda-forge sqlalchemy tornado jinja2 traitlets requests pip nodejs configurable-http-proxy && \
     /opt/conda/bin/pip install --upgrade pip && \
