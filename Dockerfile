@@ -3,7 +3,7 @@ MAINTAINER Yu-Hsin Lu <kerol2r20@gmail.com>
 
 USER root
 
-RUN rm -rf "/home/*" && \
+RUN rm -rf /home/* && \
     pip install pypandoc \
     pip install oauthenticator
 
